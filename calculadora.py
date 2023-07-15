@@ -51,7 +51,7 @@ class RendaFixa:
         plt.yticks(fontsize=10)
         plt.savefig('static/grafico.png')
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 @app.route('/')
 def index():
