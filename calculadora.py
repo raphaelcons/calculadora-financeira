@@ -74,4 +74,4 @@ def calcular():
         frase = f'Montante ao término do prazo: {montante_fmt}'
         return render_template('index.html', frase=frase)
 
-app.run(debug=True, port=8000)
+app.run(debug=True)
