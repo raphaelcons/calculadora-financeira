@@ -30,7 +30,19 @@
          <button id='botao' type="submit" class="btn">Calcular</button>
        </fieldset>
        <script>
-
+        $('#botao').on('click', function() {
+         $.ajax({
+             url: '/',
+             method: 'GET',
+             contentType: 'application/json',
+             data: {
+               aporte_inicial: $('#aporte_inicial').val(),
+               aporte_mensal: $('#aporte_mensal').val(),
+               rentabilidade: $('#rentabilidade').val(),
+               meses: $('#meses').val()
+                    }
+             });
+         });
          </script>
      </form>
      <div class="imagem">
