@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Lilita+One&family=Montserrat:wght@600&display=swap');  /* Obtido do Google fonts: https://fonts.google.com/ */
+
+:root {
+    --cor-primaria: #faedcd;
+    --cor-secundaria: #22D4FD;
+    --cor-terciaria: #ffb703;
+    --cor-quaternaria:  #2a9d8f;
+    --cor-hover: #023047;
+    --fonte-primaria: 'Lilita One'
+}
+
+* {  /* O * reseta todas as tags do HTML. Neste caso, foram resetadas as margens e paddings de todos as tags do html. Essa prática se chama Reset CSS. */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    box-sizing: border-box;
+    background-color: var(--cor-primaria);
+    color: var(--cor-terciaria);
+}
+
+
+.formulario {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    font-family: var(--fonte-primaria);
+    font-size: 48px;
+}
+
+input {
+    line-height: 40px;
+    width: 200px;
+}
+
+.btn {
+    color: var(--cor-quaternaria);
+    width: 150px;
+    height: 50px;
+    border-radius: 40px;
+    font-family: var(--fonte-primaria);
+    font-size: 36px;
+}
+
+.btn:hover {
+    background-color: var(--cor-hover);
+}
+
+.imagem {
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 40%;
+    height: 10%;
+}
+
+p {
+    font-family: var(--fonte-primaria);
+    font-size: 48px;
+    color: var(--cor-secundaria);
+    display: flex;
+    justify-content: center;
+}

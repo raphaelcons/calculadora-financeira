@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+    <script src="{{ url_for('static', filename='js/code.jquery.com_jquery-3.6.0.min.js') }}"></script>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='stonks.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+  </head>
+<body>
+    <form class="formulario_container" action="/calcular" method="get">
+       <fieldset class='formulario'>
+         <div class="form-group">
+           <label>Aporte Inicial</label>
+           <input id='aporte_inicial' type="number" name="aporte_inicial" class="form-control">
+         </div>
+         <div class="form-group">
+          <label>Aporte Mensal</label>
+          <input id='aporte_mensal' type="number" name="aporte_mensal" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Rentabilidade em % a.a.</label>
+          <input id='rentabilidade' type="number" name="rentabilidade" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Meses</label>
+          <input id='meses' type="number" name="meses" class="form-control">
+        </div>
+         <button id='botao' type="submit" class="btn">Calcular</button>
+       </fieldset>
+       <script>
+        $('#botao').on('click', function() {
+         $.ajax({
+             url: '/',
+             method: 'GET',
+             contentType: 'application/json',
+             data: {
+               aporte_inicial: $('#aporte_inicial').val(),
+               aporte_mensal: $('#aporte_mensal').val(),
+               rentabilidade: $('#rentabilidade').val(),
+               meses: $('#meses').val()
+                    }
+             });
+         });
+         </script>
+     </form>
+     <div class="imagem">
+      <img src="{{ url_for('static', filename='grafico.png') }}">
+     </div>
+     <p id='frase'>{{ frase }}</p>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Flask==2.0.2
+matplotlib==3.5.2
+numpy==1.23.0
+Gunicorn==20.1.0
+waitress=2.1.2
