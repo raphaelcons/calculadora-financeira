@@ -1,2 +1,1 @@
-web: waitress-serve --port=$PORT calculadora:application
-
+web: gunicorn app:calculadora
