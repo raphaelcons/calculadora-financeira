@@ -1,1 +1,1 @@
-web: gunicorn app:calculadora
+web: gunicorn calculadora:app
