@@ -58,7 +58,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/calcular', methods=['POST','GET'])
+@app.route('/calcular', methods=['GET',])
 def calcular():
     lista_requests = [request.args.get('aporte_inicial'), request.args.get('aporte_mensal'), request.args.get('rentabilidade'), request.args.get('meses')]
     if '' in lista_requests:
