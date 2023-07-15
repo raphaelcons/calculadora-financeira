@@ -74,4 +74,8 @@ def calcular():
         frase = f'Montante ao término do prazo: {montante_fmt}'
         return render_template('index.html', frase=frase)
 
-app.run(debug=True)
+
+if __name__ == '__main__':
+    from os import environ
+    app.run(debug=False, port=environ.get("PORT", 5000))
+    
