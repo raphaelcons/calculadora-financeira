@@ -64,3 +64,9 @@ p {
     display: flex;
     justify-content: center;
 }
+
+a {
+    font-family: var(--fonte-primaria);
+    font-size: 36px;
+    color: var(--cor-quaternaria)
+}
