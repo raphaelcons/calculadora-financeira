@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, jsonify
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
@@ -58,21 +58,25 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/calcular', methods=['GET',])
+@app.route('/calcular', methods=['GET', 'POST'])
 def calcular():
     lista_requests = [request.args.get('aporte_inicial'), request.args.get('aporte_mensal'), request.args.get('rentabilidade'), request.args.get('meses')]
     if '' in lista_requests:
         return render_template('index.html')
-    else:    
-        aporte_inicial = float(request.args.get('aporte_inicial'))
-        aporte_mensal = float(request.args.get('aporte_mensal'))
-        rentabilidade = float(request.args.get('rentabilidade'))
-        meses = int(request.args.get('meses'))
-        RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, meses=meses).grafico()
-        montante = round(RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, meses=meses).juros_compostos()[2],2)
-        montante_fmt = 'R${:,.2f}'.format(montante).replace(',','X').replace('.',',').replace('X','.')
-        frase = f'Montante ao término do prazo: {montante_fmt}'
-        return render_template('index.html', frase=frase)
+    else:
+        if request.method == "POST":
+            aporte_inicial = float(request.args.get('aporte_inicial'))
+            aporte_mensal = float(request.args.get('aporte_mensal'))
+            rentabilidade = float(request.args.get('rentabilidade'))
+            meses = int(request.args.get('meses'))
+            RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, meses=meses).grafico()
+            montante = round(RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, meses=meses).juros_compostos()[2],2)
+            montante_fmt = 'R${:,.2f}'.format(montante).replace(',','X').replace('.',',').replace('X','.')
+            frase = f'Montante ao término do prazo: {montante_fmt}'
+            return jsonify({'frase': frase})
+        else:
+            return render_template('index.html')
+        # return render_template('index.html', frase=frase)
 
 
 if __name__ == '__main__':

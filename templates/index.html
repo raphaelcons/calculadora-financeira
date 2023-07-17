@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Financeira</title>
     <script src="{{ url_for('static', filename='js/code.jquery.com_jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='stonks.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
   </head>
 <body>
   <div class="main_container">
-    <form class="formulario_container" action="/calcular" method="get">
+    <form class="formulario_container">
        <fieldset class='formulario'>
          <div class="form-group">
            <label>Aporte Inicial</label>
@@ -28,28 +29,35 @@
           <label>Meses</label>
           <input id='meses' type="number" name="meses" class="form-control">
         </div>
-         <button id='botao' type="submit" class="btn">Calcular</button>
+         <button id="botao" onclick="funcaoGrafico()" type="submit" class="btn">Calcular</button>
        </fieldset>
        <script>
-        $('#botao').on('click', function() {
+        $('#botao').on('click', function(event) {
          $.ajax({
              url: '/',
-             method: 'GET',
+             method: 'POST',
              contentType: 'application/json',
              data: {
                aporte_inicial: $('#aporte_inicial').val(),
                aporte_mensal: $('#aporte_mensal').val(),
                rentabilidade: $('#rentabilidade').val(),
                meses: $('#meses').val()
-                    }
+                    },
+              success: function (data) {
+                      $("#frase").text(data["frase"]);
+                  }
              });
+             event.preventDefault();
          });
          </script>
      </form>
-     <div class="divimagem">
-      <img class="grafico" src="{{ url_for('static', filename='grafico.png') }}">
+     <div id="divimagem" class="divimagem">
+      <img id="grafico" class="grafico">
      </div>
-     <p id='frase'>{{ frase }}</p>
+     <p id='frase'></p>
+     <div class="div_reset">
+      <button onclick="funcaoResetar()" type="submit" class="div_reset_btn">Resetar</button>
+     </div>
      <div class="divgithub">
       <a class="divgithub_link" href="https://github.com/raphaelcons" target="_blank" rel="noopener noreferrer">
         <img class="github" src="{{ url_for('static', filename='github_logo.png') }}">

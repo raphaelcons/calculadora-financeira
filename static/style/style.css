@@ -73,6 +73,19 @@ p {
     justify-content: center;
 }
 
+.div_reset_btn {
+    font-family: var(--fonte-primaria);
+    color: var(--cor-quaternaria);
+    width: 150px;
+    height: 50px;
+    border-radius: 40px;
+    font-size: 36px;
+}
+
+.div_reset_btn:hover {
+    background-color: var(--cor-hover);
+}
+
 .divgithub {
     display: flex;
     justify-content: center;
