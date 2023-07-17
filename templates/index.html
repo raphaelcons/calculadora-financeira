@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
   </head>
 <body>
+  <div class="main_container">
     <form class="formulario_container" action="/calcular" method="get">
        <fieldset class='formulario'>
          <div class="form-group">
@@ -45,12 +46,15 @@
          });
          </script>
      </form>
-     <div class="imagem">
-      <img src="{{ url_for('static', filename='grafico.png') }}">
+     <div class="divimagem">
+      <img class="grafico" src="{{ url_for('static', filename='grafico.png') }}">
      </div>
      <p id='frase'>{{ frase }}</p>
-     <div>
-      <a href="https://github.com/raphaelcons">Github</a>
+     <div class="divgithub">
+      <a class="divgithub_link" href="https://github.com/raphaelcons" target="_blank" rel="noopener noreferrer">
+        <img class="github" src="{{ url_for('static', filename='github_logo.png') }}">
+        Github</a>
      </div>
+    </div>
 </body>
 </html>
