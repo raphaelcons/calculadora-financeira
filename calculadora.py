@@ -64,22 +64,19 @@ def calcular():
     if '' in lista_requests:
         return render_template('index.html')
     else:
-        if request.method == "POST":
-            aporte_inicial = float(request.args.get('aporte_inicial'))
-            aporte_mensal = float(request.args.get('aporte_mensal'))
-            rentabilidade = float(request.args.get('rentabilidade'))
-            meses = int(request.args.get('meses'))
-            RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, meses=meses).grafico()
-            montante = round(RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, meses=meses).juros_compostos()[2],2)
-            montante_fmt = 'R${:,.2f}'.format(montante).replace(',','X').replace('.',',').replace('X','.')
-            frase = f'Montante ao término do prazo: {montante_fmt}'
-            return jsonify({'frase': frase})
-        else:
-            return render_template('index.html')
-        # return render_template('index.html', frase=frase)
+        aporte_inicial = float(request.args.get('aporte_inicial'))
+        aporte_mensal = float(request.args.get('aporte_mensal'))
+        rentabilidade = float(request.args.get('rentabilidade'))
+        meses = int(request.args.get('meses'))
+        RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, meses=meses).grafico()
+        montante = round(RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, meses=meses).juros_compostos()[2],2)
+        montante_fmt = 'R${:,.2f}'.format(montante).replace(',','X').replace('.',',').replace('X','.')
+        frase = f'Montante ao término do prazo: {montante_fmt}'
+        return jsonify({'frase': frase})
+        # render_template('index.html')
 
 
 if __name__ == '__main__':
     from os import environ
-    app.run(debug=False, port=environ.get("PORT", 5000))
+    app.run(debug=True, port=environ.get("PORT", 8000))
 

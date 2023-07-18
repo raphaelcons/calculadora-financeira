@@ -1,5 +1,5 @@
 function funcaoResetar() {
-    document.getElementById("divimagem").innerHTML = "";
+    document.getElementById("grafico").src = "../static/icon_investimento.png";
     document.getElementById("frase").innerHTML = "";
 };
 

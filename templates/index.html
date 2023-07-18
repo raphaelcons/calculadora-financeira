@@ -33,18 +33,16 @@
        </fieldset>
        <script>
         $('#botao').on('click', function(event) {
-         $.ajax({
-             url: '/',
-             method: 'POST',
-             contentType: 'application/json',
+         $.getJSON({
+             url: '/calcular',
              data: {
                aporte_inicial: $('#aporte_inicial').val(),
                aporte_mensal: $('#aporte_mensal').val(),
                rentabilidade: $('#rentabilidade').val(),
                meses: $('#meses').val()
-                    },
+              },
               success: function (data) {
-                      $("#frase").text(data["frase"]);
+                    $("#frase").html(data.frase);
                   }
              });
              event.preventDefault();
@@ -52,7 +50,7 @@
          </script>
      </form>
      <div id="divimagem" class="divimagem">
-      <img id="grafico" class="grafico">
+      <img id="grafico" class="grafico" src="{{ url_for('static', filename='icon_investimento.png') }}">
      </div>
      <p id='frase'></p>
      <div class="div_reset">
