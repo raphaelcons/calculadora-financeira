@@ -78,5 +78,4 @@ def calcular():
 
 if __name__ == '__main__':
     from os import environ
-    app.run(debug=True, port=environ.get("PORT", 8000))
-
+    app.run(debug=False, port=environ.get("PORT", 5000))
