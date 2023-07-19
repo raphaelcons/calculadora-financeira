@@ -11,7 +11,6 @@
   </head>
 <body>
   <section class="main_container">
-    <form class="formulario_container">
        <fieldset class='formulario'>
          <div class="form-group">
            <label>Aporte Inicial</label>
@@ -48,11 +47,8 @@
              event.preventDefault();
          });
          </script>
-     </form>
-     <div id="divimagem" class="divimagem">
       <img id="grafico" class="grafico" src="{{ url_for('static', filename='icon_investimento.png') }}">
-     </div>
-     <p id='frase'></p>
+     <p id='frase' class="frase"></p>
      <div class="div_reset">
       <button onclick="funcaoResetar()" type="submit" class="div_reset_btn">Resetar</button>
      </div>
@@ -63,4 +59,7 @@
      </div>
     </section>
 </body>
+<footer class="rodape">
+  <p class="data_dev">Desenvolvido em 2023</p>
+</footer>
 </html>

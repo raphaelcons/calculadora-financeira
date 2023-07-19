@@ -28,7 +28,6 @@ body {
 }
 
 .main_container {
-    margin-top: 20%;
     height: 100%;
     width: 100%;
     gap: 20px;
@@ -38,12 +37,8 @@ body {
     flex-direction: column;
 }
 
-.formulario_container {
-    height: 100%;
-}
 
 .formulario {
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,21 +70,14 @@ input {
     background-color: var(--cor-hover);
 }
 
-.divimagem {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .grafico {
-    width: 75%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-p {
+.frase {
     font-family: var(--fonte-primaria);
     font-size: 48px;
     color: var(--cor-secundaria);
@@ -133,6 +121,10 @@ p {
     height: 50%;
 }
 
+.rodape {
+    padding: 24px;
+}
+
 a {
     font-family: var(--fonte-primaria);
     font-size: 36px;
@@ -140,12 +132,23 @@ a {
     text-decoration: none;
 }
 
+.data_dev {
+    font-family: var(--fonte-primaria);
+    font-size: 20px;
+    color: var(--cor-quaternaria);
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 1100px) {
+    .main_container {
+        margin-top: 8%;
+        margin-bottom: 8%;
+    }
 
     .formulario {
         font-size: 20px;
         flex-direction: column;
-        height: 100%;
     }
 
     .form-group {
@@ -165,4 +168,5 @@ a {
         height: 70%;
         width: 90%;
     }
+
 }
