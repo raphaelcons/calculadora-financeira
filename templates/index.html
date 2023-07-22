@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,58 +9,84 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='stonks.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
-  </head>
+</head>
+
 <body>
-  <section class="main_container">
-       <fieldset class='formulario'>
-         <div class="form-group">
-           <label>Aporte Inicial</label>
-           <input id='aporte_inicial' type="number" name="aporte_inicial" class="form-control">
-         </div>
-         <div class="form-group">
-          <label>Aporte Mensal</label>
-          <input id='aporte_mensal' type="number" name="aporte_mensal" class="form-control">
+    <section class="main_container">
+        <h1>📈 Calculadora Juros Compostos</h1>
+        <!-- Uso de emojis em html pode ser feito usando a extensão do vs code Emoji Snippets, ver https://dev.to/pjijin/emoji-on-vscode--571l -->
+        <fieldset class='formulario'>
+            <div class="subform">
+                <label>Aporte Inicial</label>
+                <div class="subform_input">
+                    <span>R$</span>
+                    <input id='aporte_inicial' type="number" name="aporte_inicial" class="form-control">
+                </div>
+                <label>Aporte Mensal</label>
+                <div class="subform_input">
+                    <span>R$</span>
+                    <input id='aporte_mensal' type="number" name="aporte_mensal" class="form-control">
+                </div>
+            </div>
+            <div class="subform">
+                <label>Rentabilidade</label>
+                <div class="subform_input">
+                    <span>%</span>
+                    <input id='rentabilidade' type="number" name="rentabilidade" class="form-control">
+                    <div class="menu_dropdown">
+                        <select id="menu_dropdown_rentabilidade" class="menu_dropdown_rentabilidade">
+                                <option value="0">Mensal</li>
+                                <option value="1">Anual</li>
+                        </select>
+                    </div>
+
+                </div>
+                <label>Período</label>
+                <div class="subform_input">
+                    <input id="periodos" type="number" name="meses" class="form-control">
+                    <div class="menu_dropdown">
+                        <select id="menu_dropdown_periodos" class="menu_dropdown_periodo">
+                                <option value="0">Meses</option>
+                                <option value="1">Anos</li>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <div class="subform">
+                <button id="botao" onclick="funcaoGrafico()" type="submit" class="btn">Calcular</button>
+                <button id="botao2" onclick="funcaoLimpar()" type="submit" class="btn">Limpar</button>
+            </div>
+        </fieldset>
+        <script>
+            $('#botao').on('click', function(event) {
+                $.getJSON({
+                    url: '/calcular',
+                    data: {
+                        aporte_inicial: $('#aporte_inicial').val(),
+                        aporte_mensal: $('#aporte_mensal').val(),
+                        rentabilidade: $('#rentabilidade').val(),
+                        tipo_rentabilidade: $('#menu_dropdown_rentabilidade option:selected').text(),
+                        periodos: $('#periodos').val(),
+                        tipo_periodos: $('#menu_dropdown_periodos option:selected').text()
+                    },
+                    success: function(data) {
+                        $("#frase").html(data.frase);
+                    }
+                });
+                event.preventDefault(); // evita que um formulário seja submetido. Ver: https://www.w3schools.com/jsref/event_preventdefault.asp
+            });
+        </script>
+        <img id="grafico" class="grafico" src="{{ url_for('static', filename='grafico.png') }}">
+        <p id='frase' class="frase"></p>
+        <div class="divgithub">
+            <a class="divgithub_link" href="https://github.com/raphaelcons" target="_blank" rel="noopener noreferrer">
+                <img class="github" src="{{ url_for('static', filename='github_logo.png') }}"> Github
+            </a>
         </div>
-        <div class="form-group">
-          <label>Rentabilidade em % a.a.</label>
-          <input id='rentabilidade' type="number" name="rentabilidade" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Meses</label>
-          <input id='meses' type="number" name="meses" class="form-control">
-        </div>
-         <button id="botao" onclick="funcaoGrafico()" type="submit" class="btn">Calcular</button>
-       </fieldset>
-       <script>
-        $('#botao').on('click', function(event) {
-         $.getJSON({
-             url: '/calcular',
-             data: {
-               aporte_inicial: $('#aporte_inicial').val(),
-               aporte_mensal: $('#aporte_mensal').val(),
-               rentabilidade: $('#rentabilidade').val(),
-               meses: $('#meses').val()
-              },
-              success: function (data) {
-                    $("#frase").html(data.frase);
-                  }
-             });
-             event.preventDefault();
-         });
-         </script>
-      <img id="grafico" class="grafico" src="{{ url_for('static', filename='icon_investimento.png') }}">
-     <p id='frase' class="frase"></p>
-     <div class="div_reset">
-      <button onclick="funcaoResetar()" type="submit" class="div_reset_btn">Resetar</button>
-     </div>
-     <div class="divgithub">
-      <a class="divgithub_link" href="https://github.com/raphaelcons" target="_blank" rel="noopener noreferrer">
-        <img class="github" src="{{ url_for('static', filename='github_logo.png') }}">
-        Github</a>
-     </div>
     </section>
 </body>
 <footer class="rodape">
-  <p class="data_dev">Desenvolvido em 2023</p>
+    <p class="data_dev">Desenvolvido em 2023</p>
 </footer>
+
 </html>

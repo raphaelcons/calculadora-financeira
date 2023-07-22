@@ -2,27 +2,38 @@ from flask import Flask, render_template, request, jsonify
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.use('agg')
+matplotlib.use('agg')  # matplotlib para frontend. Ver discussão em  https://stackoverflow.com/questions/4930524/how-can-i-set-the-matplotlib-backend
 
 
 class RendaFixa:
-    def __init__(self, aporte_inicial, aporte_mensal, rentabilidade, meses):
+    def __init__(self, aporte_inicial, aporte_mensal, rentabilidade, periodos, tipo_rentabilidade, tipo_periodos):
         self.aporte_inicial = aporte_inicial
         self.aporte_mensal = aporte_mensal
         self.rentabilidade = rentabilidade
-        self.meses = meses
+        self.periodos = periodos
+        self.tipo_rentabilidade = tipo_rentabilidade
+        self.tipo_periodos = tipo_periodos
     
     def juros_compostos(self):
         y1 = []
         y2 = []
-        for x in range(1, self.meses+1):
+        print(self.tipo_periodos)
+        print(type(self.tipo_periodos))
+        if self.tipo_periodos == 'Anos':
+            periodos = self.periodos * 12
+        else:
+            periodos = self.periodos
+        if self.tipo_rentabilidade == 'Anual':
+            taxa_eq = (self.rentabilidade * 0.01 + 1) ** (1/12) -1
+        else:
+            taxa_eq = self.rentabilidade * 0.01
+        for x in range(1, periodos+1):
             if x == 1:
                 v0 = self.aporte_inicial
             else:
                 v0 = vf
-            i = self.rentabilidade  
             aporte = self.aporte_mensal
-            rendimento = v0*((i*0.01+1)**(1/12)-1)
+            rendimento = v0 * taxa_eq
             vf = v0 + aporte + rendimento
             y2.append(vf)
             aporte_acumulado = x * aporte + self.aporte_inicial
@@ -36,10 +47,14 @@ class RendaFixa:
             return 'R${:,.1f}M'.format(x/1000000).replace(',', '.')
 
     def grafico(self):
+        if self.tipo_periodos == 'Anos':
+            periodos = self.periodos * 12
+        else:
+            periodos = self.periodos
         plt.clf()
         fig = plt.figure()
         ax = fig.add_subplot()
-        x = np.arange(0, self.meses)
+        x = np.arange(0, periodos)
         plt.plot(x, self.juros_compostos()[0], color='purple', label='Aportes')
         plt.plot(x, self.juros_compostos()[1], color='aqua', label='Aportes + Rentabilidade')
         plt.xlabel('Meses')
@@ -60,16 +75,20 @@ def index():
 
 @app.route('/calcular', methods=['GET', 'POST'])
 def calcular():
-    lista_requests = [request.args.get('aporte_inicial'), request.args.get('aporte_mensal'), request.args.get('rentabilidade'), request.args.get('meses')]
+    lista_requests = [request.args.get('aporte_inicial'), request.args.get('aporte_mensal'), request.args.get('rentabilidade'), request.args.get('periodos')]
     if '' in lista_requests:
         return render_template('index.html')
     else:
         aporte_inicial = float(request.args.get('aporte_inicial'))
         aporte_mensal = float(request.args.get('aporte_mensal'))
         rentabilidade = float(request.args.get('rentabilidade'))
-        meses = int(request.args.get('meses'))
-        RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, meses=meses).grafico()
-        montante = round(RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, meses=meses).juros_compostos()[2],2)
+        periodos = int(request.args.get('periodos'))
+        tipo_rentabilidade = request.args.get('tipo_rentabilidade').split()[0]
+        print(tipo_rentabilidade)
+        tipo_periodos = request.args.get('tipo_periodos').split()[0]
+        print(tipo_periodos)
+        RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, periodos=periodos, tipo_rentabilidade=tipo_rentabilidade, tipo_periodos=tipo_periodos).grafico()
+        montante = round(RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, periodos=periodos, tipo_rentabilidade=tipo_rentabilidade, tipo_periodos=tipo_periodos).juros_compostos()[2],2)
         montante_fmt = 'R${:,.2f}'.format(montante).replace(',','X').replace('.',',').replace('X','.')
         frase = f'Montante ao término do prazo: {montante_fmt}'
         return jsonify({'frase': frase})
@@ -77,5 +96,6 @@ def calcular():
 
 
 if __name__ == '__main__':
-    from os import environ
-    app.run(debug=False, port=environ.get("PORT", 5000))
+    # from os import environ
+    #, port=environ.get("PORT", 8000)
+    app.run(debug=False)
