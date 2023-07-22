@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Lilita+One&family=Montserrat:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 /* Obtido do Google fonts: https://fonts.google.com/ */
@@ -6,8 +5,6 @@
 :root {
     --cor-primaria: #f6f6f6;
     --cor-secundaria: #31fd22;
-    --cor-terciaria: #ffb703;
-    --cor-botao: #6115dd;
     --cor-span: #39befa;
     --cor-fonte-primaria: #ffffff;
     --cor-div: #f8f3fe;
@@ -75,6 +72,7 @@ span {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     padding-left: 5px;
+    padding-right: 5px;
     background-color: var(--cor-span);
     color: var(--cor-fonte-primaria);
 }
@@ -154,38 +152,6 @@ label {
     color: var(--cor-fonte-secundaria);
 }
 
-
-/* .btn {
-    background-color: var(--cor-quaternaria);
-    color: var(--cor-fonte-primaria);
-    height: 75px;
-    width: 20%;
-    border-radius: 20px;
-    font-family: var(--fonte-primaria);
-    font-size: 30px;
-} */
-
-
-/* .btn:hover {
-    background-color: var(--cor-hover);
-} */
-
-
-/* .reset_btn {
-    background-color: var(--cor-quaternaria);
-    color: var(--cor-fonte-primaria);
-    font-family: var(--fonte-primaria);
-    width: 20%;
-    height: 75px;
-    border-radius: 20px;
-    font-size: 30px;
-} */
-
-
-/* .reset_btn:hover {
-    background-color: var(--cor-hover);
-} */
-
 .grafico {
     width: 50%;
     display: none;
@@ -195,7 +161,7 @@ label {
 
 .frase {
     font-family: var(--fonte-primaria);
-    font-size: 20px;
+    font-size: 40px;
     color: var(--cor-secundaria);
     display: flex;
     justify-content: center;

@@ -17,8 +17,6 @@ class RendaFixa:
     def juros_compostos(self):
         y1 = []
         y2 = []
-        print(self.tipo_periodos)
-        print(type(self.tipo_periodos))
         if self.tipo_periodos == 'Anos':
             periodos = self.periodos * 12
         else:
@@ -84,9 +82,7 @@ def calcular():
         rentabilidade = float(request.args.get('rentabilidade'))
         periodos = int(request.args.get('periodos'))
         tipo_rentabilidade = request.args.get('tipo_rentabilidade').split()[0]
-        print(tipo_rentabilidade)
         tipo_periodos = request.args.get('tipo_periodos').split()[0]
-        print(tipo_periodos)
         RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, periodos=periodos, tipo_rentabilidade=tipo_rentabilidade, tipo_periodos=tipo_periodos).grafico()
         montante = round(RendaFixa(aporte_inicial=aporte_inicial, aporte_mensal=aporte_mensal, rentabilidade=rentabilidade, periodos=periodos, tipo_rentabilidade=tipo_rentabilidade, tipo_periodos=tipo_periodos).juros_compostos()[2],2)
         montante_fmt = 'R${:,.2f}'.format(montante).replace(',','X').replace('.',',').replace('X','.')
