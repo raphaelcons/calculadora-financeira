@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Financeira</title>
-    <script src="{{ url_for('static', filename='js/code.jquery.com_jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='stonks.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/stonks.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
 </head>
 
 <body>
+    <script type="module" src="{{ url_for('static', filename='js/chart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!-- importação do chart.js. É necessário colocar type="module" na tag script para que o script seja reconhecido. Ver discussão em https://stackoverflow.com/questions/58211880/uncaught-syntaxerror-cannot-use-import-statement-outside-a-module-when-import -->
+    <!-- Importante importar os scripts no body em vez do cabeçalho para otimizar a importação. Ver discussão em https://pt.stackoverflow.com/questions/422438/uncaught-referenceerror-chart-is-not-defined -->
     <section class="main_container">
-        <h1>📈 Calculadora Juros Compostos</h1>
+        <h1>📈 Calculadora de Juros Compostos</h1>
         <!-- Uso de emojis em html pode ser feito usando a extensão do vs code Emoji Snippets, ver https://dev.to/pjijin/emoji-on-vscode--571l -->
         <fieldset class='formulario'>
             <div class="subform">
@@ -34,18 +37,17 @@
                     <span>%</span>
                     <input id='rentabilidade' type="number" name="rentabilidade" class="form-control">
                     <div class="menu_dropdown">
-                        <select id="menu_dropdown_rentabilidade" class="menu_dropdown_rentabilidade">
+                        <select id="tipo_rentabilidade" class="tipo_rentabilidade">
                                 <option value="0">Mensal</li>
                                 <option value="1">Anual</li>
                         </select>
                     </div>
-
                 </div>
                 <label>Período</label>
                 <div class="subform_input">
                     <input id="periodos" type="number" name="meses" class="form-control">
                     <div class="menu_dropdown">
-                        <select id="menu_dropdown_periodos" class="menu_dropdown_periodo">
+                        <select id="tipo_periodos" class="tipo_periodos">
                                 <option value="0">Meses</option>
                                 <option value="1">Anos</li>
                     </select>
@@ -53,11 +55,11 @@
                 </div>
             </div>
             <div class="subform">
-                <button id="botao" onclick="funcaoGrafico()" type="submit" class="btn">Calcular</button>
+                <button id="botao" onclick="funcaoChart()" type="submit" class="btn">Calcular</button>
                 <button id="botao2" onclick="funcaoLimpar()" type="submit" class="btn">Limpar</button>
             </div>
         </fieldset>
-        <script>
+        <!-- <script>
             $('#botao').on('click', function(event) {
                 $.getJSON({
                     url: '/calcular',
@@ -65,9 +67,9 @@
                         aporte_inicial: $('#aporte_inicial').val(),
                         aporte_mensal: $('#aporte_mensal').val(),
                         rentabilidade: $('#rentabilidade').val(),
-                        tipo_rentabilidade: $('#menu_dropdown_rentabilidade option:selected').text(),
+                        tipo_rentabilidade: $('#tipo_rentabilidade option:selected').text(),
                         periodos: $('#periodos').val(),
-                        tipo_periodos: $('#menu_dropdown_periodos option:selected').text()
+                        tipo_periodos: $('#tipo_periodos option:selected').text()
                     },
                     success: function(data) {
                         $("#frase").html(data.frase);
@@ -75,12 +77,17 @@
                 });
                 event.preventDefault(); // evita que um formulário seja submetido. Ver: https://www.w3schools.com/jsref/event_preventdefault.asp
             });
-        </script>
-        <img id="grafico" class="grafico" src="{{ url_for('static', filename='grafico.png') }}">
+        </script> -->
+        <!-- <img id="grafico" class="grafico" src="{{ url_for('static', filename='grafico.png') }}"> -->
+        <div class="div_canvas">
+            <canvas id="chart" class="chart">
+            <h1>Seu Browser não possui suporte ao Canvas</h1>
+            </canvas>
+        </div>
         <p id='frase' class="frase"></p>
         <div class="divgithub">
             <a class="divgithub_link" href="https://github.com/raphaelcons" target="_blank" rel="noopener noreferrer">
-                <img class="github" src="{{ url_for('static', filename='github_logo.png') }}"> Github
+                <img class="github" src="{{ url_for('static', filename='images/github_logo.png') }}"> Github
             </a>
         </div>
     </section>

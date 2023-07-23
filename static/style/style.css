@@ -7,9 +7,9 @@
     --cor-secundaria: #31fd22;
     --cor-span: #39befa;
     --cor-fonte-primaria: #ffffff;
+    --cor-fonte-secundaria: #000000d3;
     --cor-div: #f8f3fe;
     --cor-input: #a39d9d96;
-    --cor-fonte-secundaria: #000000d3;
     --cor-hover: #7e949e;
     --fonte-primaria: 'Roboto'
 }
@@ -100,7 +100,7 @@ input::-webkit-inner-spin-button {
     position: relative;
 }
 
-.menu_dropdown_rentabilidade {
+.tipo_rentabilidade {
     height: 40px;
     padding-right: 5px;
     background-color: var(--cor-span);
@@ -108,7 +108,7 @@ input::-webkit-inner-spin-button {
     border-bottom-right-radius: 10px;
 }
 
-.menu_dropdown_periodo {
+.tipo_periodos {
     height: 40px;
     padding-right: 5px;
     background-color: var(--cor-span);
@@ -152,9 +152,8 @@ label {
     color: var(--cor-fonte-secundaria);
 }
 
-.grafico {
+.div_canvas {
     width: 50%;
-    display: none;
     justify-content: center;
     align-items: center;
 }
@@ -228,7 +227,7 @@ a {
         height: 25px;
         font-size: 15px;
     }
-    .grafico {
+    .canvas {
         width: 90%;
     }
     .frase {

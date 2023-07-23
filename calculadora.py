@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, jsonify
-import numpy as np
+"""import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.use('agg')  # matplotlib para frontend. Ver discussão em  https://stackoverflow.com/questions/4930524/how-can-i-set-the-matplotlib-backend
+matplotlib.use('agg') """ # matplotlib para frontend. Ver discussão em  https://stackoverflow.com/questions/4930524/how-can-i-set-the-matplotlib-backend
 
 
-class RendaFixa:
+"""class RendaFixa:
     def __init__(self, aporte_inicial, aporte_mensal, rentabilidade, periodos, tipo_rentabilidade, tipo_periodos):
         self.aporte_inicial = aporte_inicial
         self.aporte_mensal = aporte_mensal
@@ -63,7 +63,7 @@ class RendaFixa:
         # Ajuste o tamanho dos ticks verticais
         plt.yticks(fontsize=10)
         plt.savefig('static/grafico.png')
-
+"""
 app = Flask(__name__, template_folder='templates')
 
 @app.route('/')
@@ -71,7 +71,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/calcular', methods=['GET', 'POST'])
+"""@app.route('/calcular', methods=['GET', 'POST'])
 def calcular():
     lista_requests = [request.args.get('aporte_inicial'), request.args.get('aporte_mensal'), request.args.get('rentabilidade'), request.args.get('periodos')]
     if '' in lista_requests:
@@ -90,7 +90,7 @@ def calcular():
         return jsonify({'frase': frase})
         # render_template('index.html')
 
-
+"""
 if __name__ == '__main__':
     # from os import environ
     #, port=environ.get("PORT", 8000)
