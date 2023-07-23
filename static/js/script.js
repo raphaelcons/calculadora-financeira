@@ -84,6 +84,8 @@ function funcaoChart() {
                 ]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false, // Impede que a altura seja mantida fixa no valor padrão do chartjs. ver https://stackoverflow.com/questions/40263891/canvas-static-height-chartjs
                 plugins: {
                     title: {
                         display: true,
