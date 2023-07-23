@@ -120,5 +120,9 @@ function funcaoChart() {
                 }
             }
         });
+        var total_final = y2[y2.length - 1].toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' }); // Ver como pegar último item em array em javascript: https://www.freecodecamp.org/news/how-to-get-the-last-item-in-an-array-in-javascript/
+        var total_investido = y1[y1.length - 1].toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' });
+        var juros = (y2[y2.length - 1] - y1[y1.length - 1]).toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' });
+        document.getElementById('frase').innerHTML = 'Resultado:' + '<br>' + 'Valor total final de ' + total_final + '<br>' + 'Valor total investido ' + total_investido + '<br>' + 'Total em Juros ' + juros;
     }
 }

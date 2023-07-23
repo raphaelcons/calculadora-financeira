@@ -3,7 +3,6 @@
     
      :root {
         --cor-primaria: #f6f6f6;
-        --cor-secundaria: #31fd22;
         --cor-span: #39befa;
         --cor-fonte-primaria: #ffffff;
         --cor-fonte-secundaria: #000000d3;
@@ -152,12 +151,13 @@
         justify-content: center;
         align-items: center;
         width: 50%;
+        height: 400px;
     }
     
     .frase {
         font-family: var(--fonte-primaria);
         font-size: 40px;
-        color: var(--cor-secundaria);
+        color: var(--cor-fonte-secundaria);
         display: flex;
         justify-content: center;
     }
