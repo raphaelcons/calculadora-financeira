@@ -1,234 +1,237 @@
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-    /* Obtido do Google fonts: https://fonts.google.com/ */
-    
-     :root {
-        --cor-primaria: #f6f6f6;
-        --cor-span: #39befa;
-        --cor-fonte-primaria: #ffffff;
-        --cor-fonte-secundaria: #000000d3;
-        --cor-div: #f8f3fe;
-        --cor-input: #a39d9d96;
-        --cor-hover: #7e949e;
-        --fonte-primaria: 'Roboto'
-    }
-    
-    * {
-        /* O * reseta todas as tags do HTML. Neste caso, foram resetadas as margens e paddings de todos as tags do html. Essa prática se chama Reset CSS. */
-        margin: 0;
-        padding: 0;
-    }
-    
-    body {
-        width: 100%;
-        background-color: var(--cor-primaria);
-    }
-    
-    .main_container {
-        width: 100%;
-        gap: 20px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
-    
-    h1 {
-        font-family: var(--fonte-primaria);
-        font-size: 40px;
-    }
-    
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* Obtido do Google fonts: https://fonts.google.com/ */
+
+ :root {
+    --cor-primaria: #f6f6f6;
+    --cor-span: #39befa;
+    --cor-fonte-primaria: #ffffff;
+    --cor-fonte-secundaria: #000000d3;
+    --cor-div: #f8f3fe;
+    --cor-input: #a39d9d96;
+    --cor-hover: #7e949e;
+    --fonte-primaria: 'Roboto'
+}
+
+* {
+    /* O * reseta todas as tags do HTML. Neste caso, foram resetadas as margens e paddings de todos as tags do html. Essa prática se chama Reset CSS. */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    background-color: var(--cor-primaria);
+}
+
+.main_container {
+    width: 100%;
+    gap: 2vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: var(--fonte-primaria);
+    font-size: 40px;
+}
+
+.formulario {
+    margin-top: 5%;
+    gap: 0.5vh;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    font-family: var(--fonte-primaria);
+    font-size: 20px;
+    border: solid;
+    border-color: var(--cor-fonte-secundaria);
+    background-color: var(--cor-div);
+    border-radius: 1vh;
+    padding: 2vh;
+}
+
+.subform {
+    gap: 1vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 33%;
+    padding: 1vw;
+}
+
+.subform_input {
+    display: flex;
+    justify-content: flex-end;
+}
+
+span {
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 1vh;
+    border-bottom-left-radius: 1vh;
+    padding-left: 0.5vh;
+    padding-right: 0.5vh;
+    background-color: var(--cor-span);
+    color: var(--cor-fonte-primaria);
+}
+
+input {
+    border: 0;
+    /* coloca-se border = 0 para remover a borda do elemento. Ver discussão em https://stackoverflow.com/questions/50548439/why-is-my-input-element-4px-taller-than-its-specified-height */
+    height: 4vh;
+    background-color: var(--cor-input);
+}
+
+
+/* Remoção das setinhas dos inputs. Ver https://www.geeksforgeeks.org/how-to-disable-arrows-from-number-input/ */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* https://www.w3schools.com/howto/howto_custom_select.asp */
+
+.menu_dropdown_conteudo {
+    position: relative;
+}
+
+.tipo_rentabilidade {
+    height: 4vh;
+    padding-right: 0.5vh;
+    background-color: var(--cor-span);
+    border-top-right-radius: 1vh;
+    border-bottom-right-radius: 1vh;
+}
+
+.tipo_periodos {
+    height: 4vh;
+    padding-right: 0.5vh;
+    background-color: var(--cor-span);
+    border-top-right-radius: 1vh;
+    border-bottom-right-radius: 1vh;
+}
+
+.tipo_rentabilidade:hover {
+    background-color: var(--cor-hover);
+}
+
+.tipo_periodos:hover {
+    background-color: var(--cor-hover);
+}
+
+.menu_dropdown:hover .menu_dropdown_conteudo {
+    display: block;
+}
+
+.div_btn {
+    gap: 2vh;
+    display: flex;
+    width: 80%;
+    justify-content: right;
+    padding-right: 2vw;
+}
+
+button {
+    background-color: var(--cor-span);
+    color: var(--cor-fonte-primaria);
+    height: 4vh;
+    border-radius: 1vh;
+    font-family: var(--fonte-primaria);
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: var(--cor-hover);
+}
+
+.btn {
+    width: 125px;
+    padding: 3vh;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    color: var(--cor-fonte-secundaria);
+}
+
+.div_canvas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 40vh;
+}
+
+.frase {
+    font-family: var(--fonte-primaria);
+    font-size: 40px;
+    color: var(--cor-fonte-secundaria);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.divgithub {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh;
+}
+
+.divgithub_link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--cor-fonte-secundaria) solid;
+    border-radius: 2vh;
+    background-attachment: fixed;
+}
+
+.divgithub_link:hover {
+    background-color: var(--cor-hover);
+}
+
+.github {
+    width: 20%;
+    height: 50%;
+}
+
+.rodape {
+    background-color: var(--cor-fonte-secundaria);
+    color: var(--cor-fonte-primaria);
+    padding: 5%;
+}
+
+a {
+    font-family: var(--fonte-primaria);
+    font-size: 20px;
+    color: var(--cor-quaternaria);
+    text-decoration: none;
+}
+
+.data_dev {
+    font-family: var(--fonte-primaria);
+    font-size: 20px;
+    color: var(--cor-quaternaria);
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 1100px) {
     .formulario {
-        margin-top: 5%;
-        gap: 5px;
-        width: 50%;
-        display: flex;
-        align-items: center;
-        font-family: var(--fonte-primaria);
-        font-size: 20px;
-        border: solid;
-        border-color: var(--cor-fonte-secundaria);
-        background-color: var(--cor-div);
-        border-radius: 10px;
-        padding: 20px;
-    }
-    
-    .subform {
-        gap: 10px;
-        display: flex;
-        align-items: baseline;
+        font-size: 15px;
         flex-direction: column;
-        width: 33%;
     }
-    
-    .subform_input {
-        display: flex;
-        justify-content: flex-end;
-    }
-    
-    span {
-        display: flex;
-        align-items: center;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-        padding-left: 5px;
-        padding-right: 5px;
-        background-color: var(--cor-span);
-        color: var(--cor-fonte-primaria);
-    }
-    
-    input {
-        border: 0;
-        /* coloca-se border = 0 para remover a borda do elemento. Ver discussão em https://stackoverflow.com/questions/50548439/why-is-my-input-element-4px-taller-than-its-specified-height */
-        height: 40px;
-        background-color: var(--cor-input);
-    }
-    /* Remoção das setinhas dos inputs. Ver https://www.geeksforgeeks.org/how-to-disable-arrows-from-number-input/ */
-    
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    /* https://www.w3schools.com/howto/howto_custom_select.asp */
-    
-    .menu_dropdown_conteudo {
-        position: relative;
-    }
-    
-    .tipo_rentabilidade {
-        height: 40px;
-        padding-right: 5px;
-        background-color: var(--cor-span);
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-    
-    .tipo_periodos {
-        height: 40px;
-        padding-right: 5px;
-        background-color: var(--cor-span);
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-    }
-    
-    .menu_dropdown:hover .menu_dropdown_conteudo {
-        display: block;
-    }
-    
-    .div_btn {
-        gap: 20px;
-        display: flex;
-        width: 80%;
-        justify-content: right;
-        padding-right: 20%;
-    }
-    
-    button {
-        background-color: var(--cor-span);
-        color: var(--cor-fonte-primaria);
-        height: 40px;
-        border-radius: 10px;
-        font-family: var(--fonte-primaria);
-        font-size: 20px;
-    }
-    
-    button:hover {
-        background-color: var(--cor-hover);
-    }
-    
-    .btn {
-        width: 125px;
-        padding: 30px;
-        display: flex;
-        align-items: center;
-    }
-    
-    label {
-        color: var(--cor-fonte-secundaria);
-    }
-    
     .div_canvas {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50%;
-        height: 400px;
+        width: 100%;
     }
-    
     .frase {
-        font-family: var(--fonte-primaria);
-        font-size: 40px;
-        color: var(--cor-fonte-secundaria);
-        display: flex;
-        justify-content: center;
+        font-size: 30px;
     }
-    
-    .divgithub {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-    }
-    
-    .divgithub_link {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: var(--cor-fonte-secundaria) solid;
-        border-radius: 20px;
-        background-attachment: fixed;
-    }
-    
-    .divgithub_link:hover {
-        background-color: var(--cor-hover);
-    }
-    
-    .github {
-        width: 20%;
-        height: 50%;
-    }
-    
-    .rodape {
-        background-color: var(--cor-fonte-secundaria);
-        color: var(--cor-fonte-primaria);
-        padding: 5%;
-    }
-    
-    a {
-        font-family: var(--fonte-primaria);
-        font-size: 20px;
-        color: var(--cor-quaternaria);
-        text-decoration: none;
-    }
-    
-    .data_dev {
-        font-family: var(--fonte-primaria);
-        font-size: 20px;
-        color: var(--cor-quaternaria);
-        display: flex;
-        justify-content: center;
-    }
-    
-    @media (max-width: 1100px) {
-        .formulario {
-            font-size: 15px;
-            flex-direction: column;
-        }
-        .subform {
-            width: 100%;
-        }
-        input {
-            line-height: 10px;
-        }
-        .btn {
-            height: 25px;
-            font-size: 15px;
-        }
-        .frase {
-            font-size: 15px;
-            padding: 5%;
-        }
-        .div_canvas {
-            height: 400px;
-            width: 100%;
-        }
-    }
+}
