@@ -39,7 +39,7 @@ h1 {
 
 .formulario {
     margin-top: 5%;
-    gap: 0.5vh;
+    gap: 2vh;
     width: 50%;
     display: flex;
     align-items: center;
@@ -53,7 +53,7 @@ h1 {
 }
 
 .subform {
-    gap: 1vh;
+    gap: 2vh;
     display: flex;
     align-items: center;
     flex-direction: column;
